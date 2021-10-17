@@ -1,0 +1,23 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  registry_package:
+    types: [published]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  delete-old-packages:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Delete maven package
+        uses: actions/delete-package-versions@v1.0.3
+        with: 
+            owner: NamrataJha
+            repo: sample_gem_namratajha
+            package-name: sample_gem_namratajha
+            num-old-versions-to-delete: 1
